@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Admin</ion-title>
-
-    <!-- Logout Button -->
     <ion-buttons slot="end">
       <ion-button (click)="logout()">
         <ion-icon name="log-out-outline"></ion-icon>
@@ -33,20 +31,19 @@
                   <th>Name</th>
                   <th>Surname</th>
                   <th>Email</th>
-                  <th>Actions</th> <!-- New column for action buttons -->
+                  <th>Balance</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let passenger of passengers | async">
-                  <td>{{ passenger.Name }}</td>
-                  <td>{{ passenger.Surname }}</td>
-                  <td>{{ passenger.Email }}</td>
+                  <td>{{ passenger.passengerNames.split(' ')[0] }}</td> <!-- Assuming first part of passengerNames is the name -->
+                  <td>{{ passenger.passengerNames.split(' ')[1] }}</td> <!-- Assuming second part of passengerNames is the surname -->
+                  <td>{{ passenger.passengerEmail }}</td>
+                  <td>{{ passenger.balance }}</td>
                   <td>
-                    <!-- Assign Admin Button -->
-                    <ion-button (click)="assignAdmin(passenger.Email)">Assign Admin</ion-button>
-
-                    <!-- Delete User Button -->
-                    <ion-button color="danger" (click)="deleteUser(passenger.Email)">Delete</ion-button>
+                    <ion-button (click)="assignAdmin(passenger.passengerEmail)">Assign Admin</ion-button>
+                    <ion-button color="danger" (click)="deleteUser(passenger.passengerEmail)">Delete</ion-button>
                   </td>
                 </tr>
               </tbody>

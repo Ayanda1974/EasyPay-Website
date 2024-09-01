@@ -147,3 +147,24 @@ ion-radio.android::part(container) {
 .popover-item:hover {
   background-color: #f0f0f0;
 }
+
+
+.vehicle {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.vehicle th, .vehicle td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.vehicle th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.vehicle tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

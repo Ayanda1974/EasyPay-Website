@@ -4,11 +4,13 @@ import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 
-interface Driver {
-  Name: string;
-  Surname: string;
-  Email: string;
-  License: string;
+interface Vehicle {
+  email: string;
+  ownerName: string;
+  password?: string; // Optional and excluded from display
+  transportNumber: string;
+  transportType: string;
+  vehicleId: string;
 }
 
 @Component({
@@ -17,7 +19,7 @@ interface Driver {
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  drivers!: Observable<Driver[]>;
+  vehicle!: Observable<Vehicle[]>;
 
   constructor(
     private firestore: AngularFirestore,
@@ -26,53 +28,45 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.drivers = this.firestore.collection<Driver>('Drivers').valueChanges();
+    // Fetching vehicle data
+    this.vehicle = this.firestore.collection<Vehicle>('vehicles').valueChanges();
   }
 
-  // logout() {
-  //   this.afAuth.signOut().then(() => {
-  //     this.router.navigate(['/login']);
-  //   }).catch(error => {
-  //     console.error('Error during logout:', error);
-  //   });
-  // }
   logout() {
     this.afAuth.signOut().then(() => {
-      this.router.navigate(['/login']); // Redirect to login page
+      this.router.navigate(['/login']);
       console.log('Admin logged out successfully');
     }).catch(error => {
       console.error('Error logging out:', error);
     });
   }
 
-  assignAdmin(Email: string) {
-    if (!Email) {
+  assignAdmin(email: string) {
+    if (!email) {
       console.error('Invalid Email address.');
       return;
     }
-    
-    console.log(`Attempting to assign admin role to: ${Email}`);
-    
-    this.firestore.collection('Login').doc(Email).set({ role: 'admin' }, { merge: true })
+
+    console.log(`Attempting to assign admin role to: ${email}`);
+
+    this.firestore.collection('admin').doc(email).set({ role: 'admin' }, { merge: true })
       .then(() => {
-        console.log(`Successfully assigned admin role to: ${Email}`);
+        console.log(`Successfully assigned admin role to: ${email}`);
       })
       .catch(error => {
         console.error('Error assigning admin:', error);
       });
   }
   
-  // Delete User Function
-  deleteUser(Email: string) {
-    if (!Email) {
+  deleteUser(email: string) {
+    if (!email) {
       console.error('Invalid Email address.');
       return;
     }
-  
-    // Use Email as the document ID to delete the user
-    this.firestore.collection('Drivers').doc(Email).delete()
+
+    this.firestore.collection('vehicle').doc(email).delete()
       .then(() => {
-        console.log(`${Email} has been deleted.`);
+        console.log(`${email} has been deleted.`);
       })
       .catch(error => {
         console.error('Error deleting user:', error.message);

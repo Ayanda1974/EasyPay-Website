@@ -1,30 +1,15 @@
-// import { Component } from '@angular/core';
-// import { MyServiceService } from '../services/my-service.service'; 
-
-
-// @Component({
-//   selector: 'app-login',
-//   templateUrl: './login.page.html',
-//   styleUrls: ['./login.page.scss'],
-// })
-// export class LoginPage {
-//   Email!: string;
-//   password!: string;
-
-//   constructor(private MyServiceService: MyServiceService) {}
-
-//   login() {
-//     this.MyServiceService.login(this.email, this.password);
-//   }
-// }
-
-
-
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { ToastController } from '@ionic/angular';
+
+interface Admin {
+  adminId: string;
+  email: string;
+  name: string;
+  password: string;
+  role: string;
+}
 
 @Component({
   selector: 'app-login',
@@ -32,42 +17,49 @@ import { map, switchMap } from 'rxjs/operators';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
-  Email!: string;
-  Password!: string;
+  email: string = '';
+  password: string = '';
 
-  constructor(private firestore: AngularFirestore, private router: Router) {}
+  constructor(
+    private firestore: AngularFirestore,
+    private router: Router,
+    private toastController: ToastController
+  ) {}
 
-  login() {
-    if (!this.Email || !this.Password) {
-      alert('Please enter both email and password');
+  async login() {
+    if (this.email === '' || this.password === '') {
+      this.showToast('Please enter both email and password.');
       return;
     }
 
-    // Log email and password to verify what is being sent
-    console.log('Attempting to login with', this.Email, this.Password);
+    try {
+      const adminRef = this.firestore.collection<Admin>('admin', ref => ref.where('email', '==', this.email).limit(1));
+      const snapshot = await adminRef.get().toPromise();
 
-    this.firestore.collection('Login', ref => 
-      ref.where('Email', '==', this.Email).where('Password', '==', this.Password)
-    ).valueChanges().pipe(
-      map(users => {
-        console.log('Fetched users:', users); // Log fetched users
-        return users.length > 0;  // Check if any user matches the credentials
-      }),
-      switchMap(isValid => {
-        if (isValid) {
-          this.router.navigate(['/admin']); // Navigate to admin page
-          return of(true);
+      if (snapshot && snapshot.docs.length > 0) {
+        const admin = snapshot.docs[0].data() as Admin;  // Cast the data to the Admin type
+
+        if (admin.password === this.password) {
+          this.showToast(`Welcome, ${admin.name}!`);
+          this.router.navigate(['/admin']);  // Navigate to the admin dashboard
         } else {
-          alert('Invalid email or password'); // Alert if credentials are incorrect
-          return of(false);
+          this.showToast('Incorrect password.');
         }
-      })
-    ).subscribe({
-      error: (err) => {
-        console.error('Error fetching users:', err); // Log any errors
-        alert('An error occurred while logging in');
+      } else {
+        this.showToast('Admin not found.');
       }
+    } catch (error) {
+      this.showToast('Error logging in. Please try again.');
+      console.error('Login error:', error);
+    }
+  }
+
+  async showToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'top',
     });
+    toast.present();
   }
 }
-

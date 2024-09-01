@@ -1,0 +1,70 @@
+/* General styles for the Welcome page */
+ion-header {
+    --background: rgba(16, 136, 234, 0.8); /* Matching header color with app */
+}
+
+ion-toolbar {
+    --background: rgba(16, 136, 234, 0.8); /* Matching toolbar color with app */
+}
+
+ion-title {
+    color: #fff; /* Title color to match app's text color */
+}
+
+/* Styling for ion-content to center content */
+ion-content {
+    background-color: rgba(16, 136, 234, 0.589); /* Match background color with app */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center; /* Center-align text content */
+    padding: 20px; /* Padding around the content */
+    height: 100%; /* Ensure full height of the container */
+}
+
+/* Styling for content container */
+.welcome-container {
+    background: rgba(0, 0, 0, 0.5); /* Slightly transparent background */
+    border-radius: 12px; /* Rounded corners */
+    padding: 20px; /* Padding inside the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    max-width: 600px; /* Limit container width */
+    width: 100%; /* Full width inside the content */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+/* Heading styles */
+.welcome-title {
+    color: #fff; /* Title color to match app's text color */
+    font-size: 24px; /* Title font size */
+    margin-bottom: 16px; /* Space below title */
+}
+
+/* Paragraph styles */
+.welcome-text {
+    color: #fff; /* Text color to match app's text color */
+    font-size: 16px; /* Text font size */
+    line-height: 1.5; /* Line height for readability */
+}
+
+/* Responsive font sizes */
+@media (max-width: 500px) {
+    .welcome-title {
+        font-size: 20px; /* Smaller font size for smaller screens */
+    }
+
+    .welcome-text {
+        font-size: 14px; /* Smaller font size for smaller screens */
+    }
+}
+
+@media (min-width: 701px) {
+    .welcome-title {
+        font-size: 28px; /* Larger font size for larger screens */
+    }
+
+    .welcome-text {
+        font-size: 18px; /* Larger font size for larger screens */
+    }
+}

@@ -1,14 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <!-- Back Button -->
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/admin"></ion-back-button>
-    </ion-buttons>
+    <ion-title>Admin</ion-title>
 
-    <!-- Page Title -->
-    <ion-title>Home</ion-title>
-
-    <!-- Logout Button -->
     <ion-buttons slot="end">
       <ion-button (click)="logout()">
         <ion-icon name="log-out-outline"></ion-icon>
@@ -25,43 +18,38 @@
   </ion-header>
 
   <ion-grid>
-    <!-- Driver Table -->
+    <!-- Vehicle Table -->
     <ion-row>
       <ion-col>
         <ion-card>
           <ion-card-header>
-            <ion-card-title>Drivers</ion-card-title>
+            <ion-card-title>Vehicles</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <table class="driver-table">
+            <table class="vehicle">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Surname</th>
+                  <th>Owner Name</th>
                   <th>Email</th>
-                  <th>License</th>
-                  <th>Actions</th> <!-- New column for action buttons -->
+                  <th>Transport Number</th>
+                  <th>Transport Type</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let driver of drivers | async">
-                  <td>{{ driver.Name }}</td>
-                  <td>{{ driver.Surname }}</td>
-                  <td>{{ driver.Email }}</td>
-                  <td>{{ driver.License }}</td>
+                <tr *ngFor="let vehicle of vehicle | async">
+                  <td>{{ vehicle.ownerName }}</td>
+                  <td>{{ vehicle.email }}</td>
+                  <td>{{ vehicle.transportNumber }}</td>
+                  <td>{{ vehicle.transportType }}</td>
                   <td>
-                    <!-- Assign Admin Button -->
-                    <ion-button (click)="assignAdmin(driver.Email)">Assign Admin</ion-button>
-
-                    <!-- Delete User Button -->
-                    <ion-button color="danger" (click)="deleteUser(driver.Email)">Delete</ion-button>
+                    <ion-button (click)="assignAdmin(vehicle.email)">Assign Admin</ion-button>
+                    <ion-button color="danger" (click)="deleteUser(vehicle.email)">Delete</ion-button>
                   </td>
                 </tr>
               </tbody>
             </table>
-
-            <!-- Message for Empty Data -->
-            <p *ngIf="(drivers | async)?.length === 0">No driver data found.</p>
+            <p *ngIf="(vehicle | async)?.length === 0">No vehicle data found.</p>
           </ion-card-content>
         </ion-card>
       </ion-col>
