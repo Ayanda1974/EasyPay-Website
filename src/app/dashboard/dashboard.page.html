@@ -1,0 +1,221 @@
+<!-- HTML template -->
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <img src="/assets/bus_logo..png" alt="" class="img-logo">
+    </ion-buttons>
+    
+    <ion-title>
+      <span>Admin</span> <span>Dashboard</span>
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button  (click)="setActiveCard('addRoutes')">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding  colors">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="3" *ngFor="let card of cards">
+        <ion-card class="dashboard-card"  (click)="setActiveCard(card.title)" button>
+          <!-- <ion-card-title> -->
+            <h2>{{ card.title }}</h2>
+          <!-- </ion-card-title> -->
+          <ion-card-content>
+            <!-- <h2>{{ card.title }}</h2> -->
+            
+            <div class="card-content">
+         
+              <div class="circle-progress">
+                <svg viewBox="0 0 36 36" class="circular-chart">
+                  <path class="circle-bg" d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  <path class="circle" [attr.stroke-dasharray]="card.count / 100 + ', 100'" d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  <text x="18" y="20.35" class="percentage">{{ card.count }}</text>
+                </svg>
+              </div>
+            </div>
+            <div class="card-icon">
+              <ion-icon [name]="card.icon" size="large"></ion-icon>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="card-container" >
+    <ion-card>
+     
+      
+      <!-- <div class="table-container"  *ngIf="activeCard === 'Registered Drivers'"> -->
+        <div class="table-container"   [ngClass]="{'card-transition': activeCard !== 'Registered Users', 'card-transition-active': activeCard === 'Registered Users'}" *ngIf="activeCard === 'Registered Users'">
+      <h2>  Registered Users</h2>
+        <ion-grid class="driver-table">
+          <ion-row class="header-row ">
+            <ion-col size="2">Name</ion-col>
+            <ion-col size="1.5">Surname</ion-col>
+            <ion-col size="3">Email</ion-col>
+            <ion-col size="1.5">transaction</ion-col>
+            <ion-col size="1">Logins</ion-col>
+            <ion-col size="1.5">Total</ion-col>
+            <ion-col size="1.5">Action</ion-col>
+          </ion-row>
+          <ion-row class="data-row" *ngFor="let pass of passengers">
+            <ion-col size="2">{{pass.name }}</ion-col>
+            <ion-col size="1.5"> {{pass.surname }}</ion-col>
+            <ion-col size="3">{{pass.passengerEmail }}</ion-col>
+            <ion-col size="1.5">{{pass.transactionCount  }}</ion-col>
+            <ion-col size="1">{{pass.loginCount }}</ion-col>
+            <ion-col size="1.5">{{pass.balance }}</ion-col>
+            <ion-col size="1.5" style="position: relative; padding: 0;"> <!-- Relative positioning -->
+              <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 20px;">
+                <ion-button fill="clear" style="color: darkgoldenrod; width: 20px; height: 20px;" (click)="onUpdate(pass)">
+                  <ion-icon slot="start" name="create-outline"></ion-icon>
+                </ion-button>
+                <ion-button fill="clear" style="color: rgb(235, 3, 3); width: 20px; height: 20px;" (click)="onDelete(pass)">
+                  <ion-icon slot="start" name="trash-outline"></ion-icon>
+                </ion-button>
+              </div>
+            </ion-col>
+            
+          </ion-row>
+        </ion-grid>
+      </div>
+      <!-- <div class="table-container" *ngIf="activeCard === 'Registered Users'"> -->
+        <div class="table-container" [ngClass]="{'card-transition': activeCard !== 'Registered Drivers', 'card-transition-active': activeCard === 'Registered Drivers'}" *ngIf="activeCard === 'Registered Drivers'">
+        <h2>  Registered Drivers</h2>
+          <ion-grid class="driver-table">
+            <ion-row class="header-row  color-bg">
+              <ion-col size="2">Name</ion-col>
+              <ion-col size="2.5">Email</ion-col>
+              <ion-col size="1.5">Transport</ion-col>
+              <ion-col size="1.5">Transport #</ion-col>
+              <ion-col size="1.5">Logins</ion-col>
+              <ion-col size="1.5">Passengers</ion-col>
+              <ion-col size="1.5">Action</ion-col>
+            </ion-row>
+            <ion-row class="data-row" *ngFor="let vehicle of vehicles">
+              <ion-col size="2">{{ vehicle.name }} {{ vehicle.surname }}</ion-col>
+              <ion-col size="2.5">{{ vehicle.email }}</ion-col>
+              <ion-col size="1.5">{{ vehicle.transportType }}</ion-col>
+              <ion-col size="1.5">{{ vehicle.transportNumber }}</ion-col>
+              <ion-col size="1.5">{{ vehicle.transactionCount  }}</ion-col>
+              <ion-col size="1.5">{{ vehicle.loginCount }}</ion-col>
+              <ion-col size="1.5" style="position: relative; padding: 0;"> <!-- Relative positioning -->
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 20px;">
+                  <ion-button fill="clear" style="color: darkgoldenrod; width: 20px; height: 20px;" (click)="onUpdate(vehicle)">
+                    <ion-icon slot="start" name="create-outline"></ion-icon>
+                  </ion-button>
+                  <ion-button fill="clear" style="color: rgb(235, 3, 3); width: 20px; height: 20px;" (click)="onDelete(vehicle)">
+                    <ion-icon slot="start" name="trash-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </ion-col>
+              
+            </ion-row>
+          </ion-grid>
+        </div>
+
+        <div class="table-container" [ngClass]="{'card-transition': activeCard !== 'Transactions', 'card-transition-active': activeCard === 'Transactions'}" *ngIf="activeCard === 'Transactions'">
+            <h2>Transactions</h2>
+            <ion-grid class="driver-table">
+              <ion-row class="header-row color-background">
+                <ion-col size="2">Transaction ID</ion-col>
+                <ion-col size="2.5">Passenger Email</ion-col>
+                <ion-col size="2.5">Vehicle Owner Email</ion-col>
+                <ion-col size="2">From/To</ion-col>
+                <ion-col size="1.5">Date/Time</ion-col>
+                <ion-col size="1.5">Amount</ion-col>
+                <!-- <ion-col size="1.5">Action</ion-col> -->
+              </ion-row>
+              <ion-row class="data-row" *ngFor="let transaction of transactions">
+                <ion-col size="2">{{ transaction.TransactionID }}</ion-col>
+                <ion-col size="2.5">{{ transaction.passengerEmail }}</ion-col>
+                <ion-col size="2.5">{{ transaction.vehicleEmail }}</ion-col>
+                <ion-col size="2">{{ transaction.From_To }}</ion-col>
+                <ion-col size="1.5">{{ transaction.dateTime  }}</ion-col>
+                <ion-col size="1.5">{{ transaction.Amount | currency }}</ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+  
+
+
+
+
+    </ion-card>
+
+<ion-card>
+
+
+
+<div class='route-container'    *ngIf="smallCard === 'Routes'" >
+  <h2>Routes</h2>
+  <div class="route-bar"   *ngFor="let route of routes">
+    <ion-card-content>
+      <div class="route-info">
+        <div class="location from">
+          <ion-icon name="locate-outline"></ion-icon>
+          <span>{{ route.from }}</span>
+        </div>
+        <ion-icon name="arrow-forward-outline" class="arrow"></ion-icon>
+        <div class="location to">
+          <ion-icon name="flag-outline"></ion-icon>
+          <span>{{ route.to }}</span>
+        </div>
+      </div>
+      <div class="amount">
+        <ion-icon name="cash-outline"></ion-icon>
+        <span>{{ route.amount | currency:'ZAR':'symbol-narrow':'1.2-2' }}</span>
+      </div>
+    </ion-card-content>
+  </div>
+
+
+
+</div>
+
+
+
+
+  
+    <div  *ngIf="smallCard === 'addRoutes'">
+    <h2  class="card-routes-title">Add - Routes</h2>
+  <ion-card-content>
+    <form (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-label position="floating">From</ion-label>
+        <ion-input [(ngModel)]="route.from" name="from" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">To</ion-label>
+        <ion-input [(ngModel)]="route.to" name="to" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Amount</ion-label>
+        <ion-input type="number" [(ngModel)]="route.amount" name="amount" required></ion-input>
+      </ion-item>
+      <ion-button expand="full" type="submit" class="btn-color">Add/Update</ion-button>
+    </form>
+  </ion-card-content>
+
+
+</div>
+</ion-card>
+      </div>
+
+</ion-content>
+
+
+

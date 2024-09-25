@@ -1,0 +1,99 @@
+
+/* SCSS styles */
+:host {
+  --primary-color: #3880ff;
+  --secondary-color: antiquewhite;
+  --text-color: #333;
+  --card-bg-color: #fff;
+}
+
+.dashboard-title {
+  font-size: 28px;
+  color: var(--text-color);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.dashboard-card {
+  background-color: var(--card-bg-color);
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  ion-card-content {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .card-icon {
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+
+    ion-icon {
+      font-size: 30px;
+      color: var(--primary-color);
+    }
+  }
+
+  .card-content {
+    flex: 1;
+
+    h2 {
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--text-color);
+      margin-bottom: 10px;
+    }
+  }
+
+  .circle-progress {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+  }
+
+  .circular-chart {
+    display: block;
+    max-width: 100%;
+    max-height: 250px;
+  }
+
+  .circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 3.8;
+  }
+
+  .circle {
+    fill: none;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+    stroke: var(--primary-color);
+  }
+
+  .percentage {
+    fill: var(--text-color);
+    font-size: 0.5em;
+    text-anchor: middle;
+    font-weight: bold;
+  }
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
