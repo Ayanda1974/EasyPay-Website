@@ -1,12 +1,12 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/welcome"></ion-back-button>
-      <ion-title>Admin</ion-title> <!-- Change title to Admin -->
-      <ion-img src="assets/bus_logo.png" class="header-image"></ion-img> <!-- Add your image here -->
+      <ion-title>Admin</ion-title> 
+      <ion-img src="assets/bus_logo.png" class="header-image"></ion-img> 
     </ion-buttons>
     <ion-buttons slot="end">
-      <!-- <ion-back-button defaultHref="/welcome"></ion-back-button> -->
+      <ion-back-button defaultHref="/welcome"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -46,5 +46,47 @@
         </div>
       </ion-card-content>
     </ion-card>
+  </div>
+</ion-content> -->
+
+
+<ion-content style="--background:rgba(16, 136, 234, 0.8);">
+  <div class="form-container">
+    <p class="title">Welcome back</p>
+    <form class="form" (submit)="login($event)">
+      <input
+        type="email"
+        class="input"
+        placeholder="Email"
+        [(ngModel)]="email"
+        name="email"
+        required
+      />
+      <input
+        type="password"
+        class="input"
+        placeholder="Password"
+        [(ngModel)]="password"
+        name="password"
+        required
+      />
+      <p class="page-link">
+        <span class="page-link-label"></span>
+      </p>
+      <button class="form-btn" type="submit">Log in</button>
+    </form>
+    <p class="sign-up-label">
+     <span class="sign-up-link"></span>
+    </p>
+    <div class="buttons-container">
+      <!-- <div class="apple-login-button">
+       
+        <span>EasyTicketPay</span>
+      </div> -->
+      <div class="google-login-button">
+        
+        <img src="assets/bus_logo.png" alt="EasyTickePay Logo"><img>
+      </div>
+    </div>
   </div>
 </ion-content>

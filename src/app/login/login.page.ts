@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { NgForm } from '@angular/forms';
 
 interface Admin {
   adminId: string;
@@ -26,22 +27,26 @@ export class LoginPage {
     private toastController: ToastController
   ) {}
 
-  async login() {
+  async login(event: Event) {
+    event.preventDefault();  // Prevent form from reloading the page
+
     if (this.email === '' || this.password === '') {
       this.showToast('Please enter both email and password.');
       return;
     }
 
     try {
-      const adminRef = this.firestore.collection<Admin>('admin', ref => ref.where('email', '==', this.email).limit(1));
+      const adminRef = this.firestore.collection<Admin>('admin', ref =>
+        ref.where('email', '==', this.email).limit(1)
+      );
       const snapshot = await adminRef.get().toPromise();
 
       if (snapshot && snapshot.docs.length > 0) {
-        const admin = snapshot.docs[0].data() as Admin;  // Cast the data to the Admin type
+        const admin = snapshot.docs[0].data() as Admin;
 
         if (admin.password === this.password) {
           this.showToast(`Welcome, ${admin.name}!`);
-          this.router.navigate(['/dashboard']);  // Navigate to the admin dashboard
+          this.router.navigate(['/dashboard']);
         } else {
           this.showToast('Incorrect password.');
         }
