@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { NavController } from '@ionic/angular'; // Import NavController
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 
 interface Transaction {
@@ -79,7 +80,8 @@ export class DashboardPage implements OnInit {
   smallCard: string = 'Routes';
 
   constructor(private firestore: AngularFirestore,
-    private alertController: AlertController,
+    private alertController: AlertController, 
+    private navCtrl: NavController,
   ) {
     this.showDiv = new Array(this.cards.length).fill(false);
   }
@@ -105,6 +107,15 @@ export class DashboardPage implements OnInit {
     }
     
   }
+
+  logout() {
+    // Clear user session or token (if applicable)
+    localStorage.removeItem('userToken'); // Example: Remove user token from local storage
+
+    // Navigate back to the login or welcome page
+    this.navCtrl.navigateRoot('/login'); // Replace '/login' with your login page route
+  }
+
 
   getVehicles() {
     this.firestore.collection<Vehicle>('vehicles').snapshotChanges().subscribe(async (res) => {

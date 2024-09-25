@@ -1,77 +1,102 @@
 /* General styles for the Login page */
-ion-header {
-    --background: rgba(16, 136, 234, 0.8); /* Matching header color with app */
+/* Style for the header image */
+.header-image {
+    width: 40px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-left: 10px; /* Space from the left edge */
+    margin-right: 10px; /* Space from the title */
+    --background: rgba(16, 136, 234, 0.8);
 }
 
 ion-toolbar {
-    --background: rgba(16, 136, 234, 0.8); /* Matching toolbar color with app */
+    --background: rgba(16, 136, 234, 0.8);
 }
 
 ion-title {
-    color: #fff; /* Title color to match app's text color */
+    color: #fff;
+    font-weight: bold; /* Make title bold */
 }
 
 /* Styling for ion-items and labels */
 ion-item {
     margin: 16px;
-    --background: rgba(0, 0, 0, 0.2); /* Slightly transparent background for items */
-    --border-color: #fff; /* Border color for input fields */
-    --placeholder-color: #fff; /* Placeholder color to match text color */
+    --background: rgba(0, 0, 0, 0.2);
+    --border-color: #fff;
+    --placeholder-color: #fff;
+    padding-left: 120px; /* Add padding to move inputs to the right */
+    width: calc(100% - 3px); /* Widen input fields */
 }
 
 ion-label {
-    color: #fff; /* Label color to match text color */
+    color: #fff;
 }
 
 ion-input {
-    color: #fff; /* Input text color */
-    border: 1px solid #fff; /* Input border color */
-    border-radius: 10px; /* Rounded borders for inputs */
-    padding: 8px; /* Padding inside input fields */
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    padding: 8px;
+    width: calc(100% - 3px); /* Widen input fields */
 }
 
 /* Styling for the login button */
 ion-button {
     margin: 16px;
-    --background: #00ff40; /* Matching button color with app */
-    --color: #000; /* Button text color */
-    --border-radius: 5px; /* Rounded corners for the button */
+    --background: #00ff40;
+    --color: #000;
+    --border-radius: 5px;
+    padding-left: 120px;
+    width: calc(100% - 3px); /* Widen button */
 }
 
 ion-button:hover {
-    --background: #1dff70; /* Lighter color on hover */
+    --background: #1dff70;
 }
 
-/* Fullscreen content adjustments */
-ion-content {
-    background-color: rgba(16, 136, 234, 0.589); /* Match background color with app */
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    height: 100vh;
+    background-color: #f5f5f5;
 }
 
-@media (max-width: 500px) {
-    ion-input {
-        font-size: 18px; /* Adjust font size for smaller screens */
-    }
-
-    ion-button {
-        font-size: 18px; /* Adjust button font size for smaller screens */
-    }
+.login-card {
+    width: 800px; /* Increased width for more space */
+    background-color:rgba(16, 136, 234, 0.8);/* Blue color for the card */
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex; /* Enable flexbox layout */
+    position: relative; /* Enable absolute positioning for children */
 }
 
-@media (min-width: 701px) {
-    ion-input {
-        font-size: 22px; /* Larger font size for larger screens */
-    }
-
-    ion-button {
-        font-size: 22px; /* Larger button font size for larger screens */
-    }
+/* Style for the card content */
+.login-card-content {
+    display: flex; /* Use flexbox for the card content */
+    padding: 20px; /* Padding inside the card */
+    flex: 1; /* Allow the content to grow and fill space */
+    position: relative; /* Positioning for title */
 }
 
-/* Custom styles for back button */
-ion-back-button {
-    --color: #fff; /* Color of the back button text/icon */
+/* Styling for the image */
+.login-image {
+    width: 150px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Add margin to the right for spacing */
+    /* Move the image to the left of the card content */
+}
+
+/* Title styling */
+.login-title {
+    color: white; /* Ensure the title is white */
+    font-weight: bold; /* Make title bold */
+    padding-left: 20px; /* Add some left padding */
+}
+
+/* Styling for the grid within the card */
+ion-grid {
+    flex: 1; /* Allow grid to take remaining space */
+    display: flex; /* Use flexbox for better layout */
+    flex-direction: column; /* Stack items vertically */
 }

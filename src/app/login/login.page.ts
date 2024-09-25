@@ -41,7 +41,7 @@ export class LoginPage {
 
         if (admin.password === this.password) {
           this.showToast(`Welcome, ${admin.name}!`);
-          this.router.navigate(['/admin']);  // Navigate to the admin dashboard
+          this.router.navigate(['/dashboard']);  // Navigate to the admin dashboard
         } else {
           this.showToast('Incorrect password.');
         }

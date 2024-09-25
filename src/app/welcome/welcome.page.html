@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title>Welcome</ion-title>
     <ion-buttons slot="end">
@@ -37,5 +37,62 @@
         For inquiries, please email us at contact&#64;easytickepay.com
       </ion-card-content>
     </ion-card>
+  </div>
+
+  <div class="welcome-container"></div>
+    <ion-button (click)="showVideo = !showVideo">Watch Video</ion-button> -->
+
+    <!-- Video section -->
+    <!-- <div *ngIf="showVideo" class="video-container">
+      <video width="100%" controls>
+        <source src="assets/The Cherry.mp4" type="video/mp4"> <!-- Update with your video path -->
+        <!-- Your browser does not support the video tag.
+      </video>
+      <ion-button (click)="showVideo = false">Close Video</ion-button>
+  </div>
+</ion-content> --> -->
+
+
+<ion-content class="ion-padding">
+  <div class="welcome-container">
+    <h1>
+      <img src="assets/bus_logo.png" alt="EasyTickePay Logo" class="logo" /> 
+      EasyTickePay</h1>
+    <div *ngIf="!selectedButton" class="button-grid">
+      <ion-button expand="block" color="light" (click)="onButtonClick('about')">About</ion-button>
+      <ion-button expand="block" color="light" (click)="onButtonClick('contact')">Contact</ion-button>
+      <ion-button expand="block" color="light" (click)="onButtonClick('admin')">Admin</ion-button>
+      <ion-button expand="block" color="light" (click)="onButtonClick('video')">Watch Video</ion-button>
+    </div>
+
+    <div *ngIf="selectedButton === 'about'" class="content-section">
+      <h2>About Us</h2>
+      <p>EasyTickePay is your go-to solution for hassle-free ticket payments. Welcome to EasyTicketPay, the ultimate mobile application crafted to simplify and automate your trip payments.</p>
+      <ion-button (click)="backToButtons()">Back</ion-button>
+    </div>
+
+    <div *ngIf="selectedButton === 'contact'" class="content-section">
+      <h2>Contact Us</h2>
+      <p>For inquiries, please email us at contact&#64;easytickepay.com</p>
+      <ion-button (click)="backToButtons()">Back</ion-button>
+    </div>
+
+    <div *ngIf="selectedButton === 'admin'" class="content-section">
+      <h2>Admin Login</h2>
+      <p>ADMINISTRATORS ONLY. Please login to access admin features.</p>
+      <ion-button (click)="navigateToLogin()">Login</ion-button>
+      <ion-button (click)="backToButtons()">Back</ion-button>
+    </div>    
+
+    <div *ngIf="selectedButton === 'video'" class="content-section">
+      <h2>Watch Video</h2>
+      <div class="video-container">
+        <video width="100%" controls>
+          <source src="assets/The Cherry Cherries.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <ion-button (click)="backToButtons()">Back</ion-button>
+    </div>
   </div>
 </ion-content>

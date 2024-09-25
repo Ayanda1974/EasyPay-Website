@@ -1,70 +1,145 @@
-/* General styles for the Welcome page */
-ion-header {
-    --background: rgba(16, 136, 234, 0.8); /* Matching header color with app */
-}
+// /* General styles for the Welcome page */
+// ion-header {
+//     --background: rgba(16, 136, 234, 0.8); /* Matching header color with app */
+// }
 
-ion-toolbar {
-    --background: rgba(16, 136, 234, 0.8); /* Matching toolbar color with app */
-}
+// ion-toolbar {
+//     --background: rgba(16, 136, 234, 0.8); /* Matching toolbar color with app */
+// }
 
-ion-title {
-    color: #fff; /* Title color to match app's text color */
-}
+// ion-title {
+//     color: #fff; /* Title color to match app's text color */
+// }
 
-/* Styling for ion-content to center content */
+// /* Styling for ion-content to center content */
+// ion-content {
+//     background-color: rgba(16, 136, 234, 0.589); /* Match background color with app */
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     flex-direction: column;
+//     text-align: center; /* Center-align text content */
+//     padding: 20px; /* Padding around the content */
+//     height: 100%; /* Ensure full height of the container */
+// }
+
+// /* Styling for content container */
+// .welcome-container {
+//     background: rgba(0, 0, 0, 0.5); /* Slightly transparent background */
+//     border-radius: 12px; /* Rounded corners */
+//     padding: 20px; /* Padding inside the container */
+//     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+//     max-width: 600px; /* Limit container width */
+//     width: 100%; /* Full width inside the content */
+//     box-sizing: border-box; /* Include padding and border in element's total width and height */
+// }
+
+// /* Heading styles */
+// .welcome-title {
+//     color: #fff; /* Title color to match app's text color */
+//     font-size: 24px; /* Title font size */
+//     margin-bottom: 16px; /* Space below title */
+// }
+
+// /* Paragraph styles */
+// .welcome-text {
+//     color: #fff; /* Text color to match app's text color */
+//     font-size: 16px; /* Text font size */
+//     line-height: 1.5; /* Line height for readability */
+// }
+
+// /* Responsive font sizes */
+// @media (max-width: 500px) {
+//     .welcome-title {
+//         font-size: 20px; /* Smaller font size for smaller screens */
+//     }
+
+//     .welcome-text {
+//         font-size: 14px; /* Smaller font size for smaller screens */
+//     }
+// }
+
+// @media (min-width: 701px) {
+//     .welcome-title {
+//         font-size: 28px; /* Larger font size for larger screens */
+//     }
+
+//     .welcome-text {
+//         font-size: 18px; /* Larger font size for larger screens */
+//     }
+
+//     .video-container {
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         margin-top: 20px;
+//       }
+      
+// }
+
 ion-content {
-    background-color: rgba(16, 136, 234, 0.589); /* Match background color with app */
+    --background: rgba(16, 136, 234, 0.8);
+  }
+  
+  .welcome-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    text-align: center; /* Center-align text content */
-    padding: 20px; /* Padding around the content */
-    height: 100%; /* Ensure full height of the container */
-}
-
-/* Styling for content container */
-.welcome-container {
-    background: rgba(0, 0, 0, 0.5); /* Slightly transparent background */
-    border-radius: 12px; /* Rounded corners */
-    padding: 20px; /* Padding inside the container */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for depth */
-    max-width: 600px; /* Limit container width */
-    width: 100%; /* Full width inside the content */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
-}
-
-/* Heading styles */
-.welcome-title {
-    color: #fff; /* Title color to match app's text color */
-    font-size: 24px; /* Title font size */
-    margin-bottom: 16px; /* Space below title */
-}
-
-/* Paragraph styles */
-.welcome-text {
-    color: #fff; /* Text color to match app's text color */
-    font-size: 16px; /* Text font size */
-    line-height: 1.5; /* Line height for readability */
-}
-
-/* Responsive font sizes */
-@media (max-width: 500px) {
-    .welcome-title {
-        font-size: 20px; /* Smaller font size for smaller screens */
+    height: 100%;
+    justify-content: flex-start;
+    padding: 20px;
+  }
+  
+  h1 {
+    color: white;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  ion-button {
+    --background: #ffffff;
+    --color: #000000;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .content-section {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+  
+    h2 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+  
+    p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+  }
+  
+  .video-container {
+    margin-bottom: 20px;
+  }
+  
+  @media (min-width: 768px) {
+    .button-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    .welcome-text {
-        font-size: 14px; /* Smaller font size for smaller screens */
-    }
-}
-
-@media (min-width: 701px) {
-    .welcome-title {
-        font-size: 28px; /* Larger font size for larger screens */
-    }
-
-    .welcome-text {
-        font-size: 18px; /* Larger font size for larger screens */
-    }
-}
+    .logo {
+        width: 40px; /* Adjust size as needed */
+        height: auto; /* Maintain aspect ratio */
+        margin-right: 10px; /* Space between the image and title */
+        vertical-align: middle; /* Aligns with text */
+      }
+      
+  }

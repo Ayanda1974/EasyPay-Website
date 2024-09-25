@@ -1,34 +1,50 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Admin</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/welcome"></ion-back-button>
+      <ion-title>Admin</ion-title> <!-- Change title to Admin -->
+      <ion-img src="assets/bus_logo.png" class="header-image"></ion-img> <!-- Add your image here -->
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <!-- <ion-back-button defaultHref="/welcome"></ion-back-button> -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label position="floating">Email</ion-label>
-          <ion-input type="email" [(ngModel)]="email"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" [(ngModel)]="password"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-button expand="full" (click)="login()">Login</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class="login-container">
+    <ion-card class="login-card">
+      <ion-card-header>
+        <ion-card-title class="login-title">EasyTicketPay</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="login-card-content">
+          <ion-img src="assets/admin.png" class="login-image"></ion-img>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label position="floating">Email</ion-label>
+                  <ion-input type="email" [(ngModel)]="email"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label position="floating">Password</ion-label>
+                  <ion-input type="password" [(ngModel)]="password"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button expand="full" (click)="login()">Login</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

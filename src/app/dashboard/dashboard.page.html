@@ -2,7 +2,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <img src="/assets/bus_logo..png" alt="" class="img-logo">
+      <img src="/assets/bus_logo.png" alt="" class="img-logo">
     </ion-buttons>
     
     <ion-title>
@@ -13,9 +13,9 @@
       <ion-button  (click)="setActiveCard('addRoutes')">
         <ion-icon name="add-outline"></ion-icon>
       </ion-button>
-      <ion-button>
+      <ion-button (click)="logout()">
         <ion-icon name="log-out-outline"></ion-icon>
-      </ion-button>
+      </ion-button>      
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
