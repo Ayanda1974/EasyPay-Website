@@ -53,29 +53,113 @@
 </ion-content> --> -->
 
 
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button>
+        <img src="assets/bus_logo.png" alt="EasyTickePay Logo" class="logo" />
+      </ion-button>
+      <ion-title>EasyTicketPay</ion-title>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="onButtonClick('about')">About</ion-button>
+      <ion-button (click)="onButtonClick('contact')">Contact</ion-button>
+      <ion-button (click)="onButtonClick('admin')">Admin</ion-button>
+      <ion-button (click)="onButtonClick('video')">Watch Video</ion-button>
+      <!-- <ion-button>
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+      <ion-button class="sign-up-button">Sign Up</ion-button> -->
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content class="ion-padding">
   <div class="welcome-container">
-    <h1>
-      <img src="assets/bus_logo.png" alt="EasyTickePay Logo" class="logo" /> 
-      EasyTicketPay</h1>
-    <div *ngIf="!selectedButton" class="button-grid">
-      <ion-button expand="block" color="light" (click)="onButtonClick('about')">About</ion-button>
-      <ion-button expand="block" color="light" (click)="onButtonClick('contact')">Contact</ion-button>
-      <ion-button expand="block" color="light" (click)="onButtonClick('admin')">Admin</ion-button>
-      <ion-button expand="block" color="light" (click)="onButtonClick('video')">Watch Video</ion-button>
+    <!-- Your existing content here -->
+    <div *ngIf="!selectedButton" class="welcome-message">
+      <h1>Welcome to EasyTicketPay</h1>
+      <p>Your go-to solution for hassle-free ticket payments.</p>
     </div>
 
-    <div *ngIf="selectedButton === 'about'" class="content-section">
-      <h2>About Us</h2>
-      <p>EasyTickePay is your go-to solution for hassle-free ticket payments. Welcome to EasyTicketPay, the ultimate mobile application crafted to simplify and automate your trip payments.</p>
-      <ion-button (click)="backToButtons()">Back</ion-button>
-    </div>
 
     <div *ngIf="selectedButton === 'contact'" class="content-section">
       <h2>Contact Us</h2>
       <p>For inquiries, please email us at contact&#64;easytickepay.com</p>
       <ion-button (click)="backToButtons()">Back</ion-button>
-    </div>
+    <!-- </div> -->
+
+    <!-- <ion-header>
+      <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+          <ion-button (click)="goBack()">
+            <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>Contact Us</ion-title>
+      </ion-toolbar>
+    </ion-header> -->
+    
+      <div class="contact-header">
+        <h2>Send Us A Message</h2>
+      </div>
+      <div class="contact-content">
+        <div class="contact-details">
+          <h2>Getting In Touch is Easy</h2>
+          <p>Dr KaSeme Prixel, 161 Beach Hotel</p>
+          <p>Durban 4000</p>
+          <p>+2763 442 8902</p>
+          <p>
+            <a href="mailto:ayandabuthelezi1974&#64;gmail.com" title="ayandabuthelezi1974@gmail.com">ayandabuthelezi1974&#64;gmail.com</a>
+          </p>
+        </div>
+    
+        <div class="contact-form">
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <ion-item>
+              <ion-label position="floating">Your Name</ion-label>
+              <ion-input type="text" formControlName="name" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Your Email</ion-label>
+              <ion-input type="email" formControlName="email" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Your Message</ion-label>
+              <ion-textarea rows="6" formControlName="message" placeholder="Write me about any project or job offer. I'd love to work with you."></ion-textarea>
+            </ion-item>
+            <ion-button expand="block" type="submit" class="submit-button" [disabled]="!contactForm.valid">
+              Submit
+            </ion-button>
+          </form>
+        </div>
+      </div>
+    
+      <div class="social-section">
+        <h3>Visit us &#64;</h3>
+        <div class="social-icons">
+          <a href="https://wa.me/+27634428902" class="icon-link" target="_blank" title="WhatsApp">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+          </a>
+          <a href="https://www.facebook.com/Ayanda1974" class="icon-link" target="_blank" title="Facebook">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </a>
+          <a href="https://twitter.com/ayandabuthelezi1974" class="icon-link" target="_blank" title="Twitter">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </a>
+          <a href="https://www.instagram.com/AyandaButhelezi" class="icon-link" target="_blank" title="Instagram">
+            <ion-icon name="logo-instagram"></ion-icon>
+          </a>
+          <a href="https://www.linkedin.com/in/ayanda-buthelezi-a6503b21a" class="icon-link" target="_blank" title="LinkedIn">
+            <ion-icon name="logo-linkedin"></ion-icon>
+          </a>
+          <a href="https://www.tiktok.com/@AyandaAyandaButhelezi" class="icon-link" target="_blank" title="TikTok">
+            <ion-icon name="logo-tiktok"></ion-icon>
+          </a>
+        </div>
+      </div>
+      </div>
+
 
     <div *ngIf="selectedButton === 'admin'" class="content-section">
       <h2>Admin Login</h2>
@@ -83,6 +167,19 @@
       <ion-button (click)="navigateToLogin()">Login</ion-button>
       <ion-button (click)="backToButtons()">Back</ion-button>
     </div>    
+
+    <div *ngIf="selectedButton === 'about'" class="content-section">
+      <h2>About EasyTicketPay</h2>
+      <p>Welcome to EasyTicketPay, the ultimate mobile application crafted to simplify<br>
+        and automate your trip payments. With our secure and intuitive platform, you can <br>
+        effortlessly enter your bank card details and the amount you wish to pay, all while <br>
+        benefiting from the seamless integration of Stripe for payment processing. Our app <br>
+        boasts a user-friendly interface and a comprehensive ticket management system that <br>
+        allows you to effortlessly track your purchases. Enjoy the convenience of QR code<br> 
+        scanning for swift in-car payments, ensuring a smooth and efficient experience every <br>
+        time you travel.</p>
+      <ion-button (click)="backToButtons()">Back</ion-button>
+    </div> 
 
     <div *ngIf="selectedButton === 'video'" class="content-section">
       <h2>Watch Video</h2>
@@ -92,6 +189,15 @@
           Your browser does not support the video tag.
         </video>
       </div>
+
+      <div class="right-column">
+        <!-- <img src="assets/dash.png" alt="EasyTicketPay" class="side-image"> -->
+      
+
+      <ion-button>
+        <img src="assets/dash.png" alt="EasyTickePay Logo" class="logo" />
+      </ion-button>
+    </div>
       <ion-button (click)="backToButtons()">Back</ion-button>
     </div>
   </div>

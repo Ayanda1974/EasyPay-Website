@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+// import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
 import { WelcomePageRoutingModule } from './welcome-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { WelcomePage } from './welcome.page';
 
@@ -13,7 +14,8 @@ import { WelcomePage } from './welcome.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    WelcomePageRoutingModule
+    WelcomePageRoutingModule,
+    ReactiveFormsModule,
   ],
   declarations: [WelcomePage]
 })

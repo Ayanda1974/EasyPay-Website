@@ -142,6 +142,108 @@ ion-content {
         vertical-align: middle; /* Aligns with text */
       }
 
+      /* menu.component.scss */
+ion-toolbar {
+  --background: #333;
+  --color: white;
+}
+
+ion-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+ion-button.action-button {
+  --background: #4CAF50;
+  --color: white;
+  --border-radius: 5px;
+  margin-left: 10px;
+}
+
+ion-list {
+  padding-top: 20px;
+}
+
+ion-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --min-height: 50px;
+  
+  &::part(native) {
+    background: transparent;
+  }
+}
+
+// Keep your existing header styles
+
+.content-wrapper {
+  display: flex;
+  height: 100%;
+}
+
+.left-column {
+  flex: 1;
+  padding-right: 20px;
+  overflow-y: auto;
+}
+
+.right-column {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+}
+
+.side-image {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-container {
+  // ... (keep existing styles)
+}
+
+.welcome-message {
+  text-align: left;
+  margin-top: 2em;
+
+  h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 0.5em;
+  }
+
+  p {
+    font-size: 1.2em;
+    color: #666;
+  }
+}
+
+// ... (keep other existing styles)
+
+// Add responsive styles for smaller screens
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .left-column, .right-column {
+    width: 100%;
+  }
+
+  .right-column {
+    order: -1;
+    margin-bottom: 20px;
+  }
+
+  .side-image {
+    max-height: 40vh;
+  }
+}
     
       
   }

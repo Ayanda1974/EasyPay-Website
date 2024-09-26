@@ -51,6 +51,10 @@
 
 
 <ion-content style="--background:rgba(16, 136, 234, 0.8);">
+  <ion-button class="back-button" (click)="goBack()">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+    Back
+  </ion-button>
   <div class="form-container">
     <p class="title">Welcome back</p>
     <form class="form" (submit)="login($event)">

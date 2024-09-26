@@ -53,6 +53,19 @@ ion-button:hover {
     --background: #1dff70;
 }
 
+.back-button {
+  --background: transparent; /* No background */
+  --color: white; /* Adjust the color as needed */
+  --padding-start: 0; /* Remove default padding */
+  --padding-end: 0;
+  font-weight: bold; /* Optional: Make the text bold */
+}
+
+.back-button ion-icon {
+  margin-right: 5px; /* Space between icon and text */
+}
+
+
 .login-container {
     display: flex;
     justify-content: center;

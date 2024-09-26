@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { NavController } from '@ionic/angular'; // Import NavController
 import { NgForm } from '@angular/forms';
 
 interface Admin {
@@ -24,7 +25,8 @@ export class LoginPage {
   constructor(
     private firestore: AngularFirestore,
     private router: Router,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private navCtrl: NavController
   ) {}
 
   async login(event: Event) {
@@ -57,6 +59,14 @@ export class LoginPage {
       this.showToast('Error logging in. Please try again.');
       console.error('Login error:', error);
     }
+  }
+
+  goBack() {
+    // Clear user session or token (if applicable)
+    localStorage.removeItem('userToken'); // Example: Remove user token from local storage
+
+    // Navigate back to the login or welcome page
+    this.navCtrl.navigateRoot('/welcome'); // Replace '/login' with your login page route
   }
 
   async showToast(message: string) {
