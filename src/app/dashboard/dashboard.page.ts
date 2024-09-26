@@ -55,7 +55,7 @@ export class DashboardPage implements OnInit {
     { title: 'Registered Users', count: 0, icon: 'people-outline' },
     { title: 'Registered Drivers', count: 0, icon: 'car-outline' },
     { title: 'Transactions', count: 0, icon: 'cash-outline' },
-    { title: 'Routes', count: 120, icon: 'map-outline' }
+    { title: 'Routes', count: 0, icon: 'map-outline' }
   ];
   
   vehicles: (Vehicle & { name: string; surname: string,transactionCount :number,loginCount:number})[] = [];
@@ -236,6 +236,9 @@ export class DashboardPage implements OnInit {
           const passengerEmail = await this.getPassengerEmail(data.passengerId);
 
           const vehicleEmail = await this.getVehicleEmail(data.VehicleId);
+          
+          const averageRating = await this.getAverageRating(data.VehicleId);
+    
   
           return { id, ...data, passengerEmail, vehicleEmail };
         })
@@ -306,27 +309,35 @@ export class DashboardPage implements OnInit {
     alert('Delete button clicked for:'+ item);
     // Your delete logic here
   }
+
+  async getAverageRating(vehicleId: string): Promise<number> {
+    try {
+      const docRef = this.firestore.collection('ratings').doc(vehicleId);
+      const docSnapshot = await docRef.get().toPromise();
+
+      if (docSnapshot && docSnapshot.exists) {
+        const ratingsArray = docSnapshot.data() // Get ratings array
+
+        if (ratingsArray && Array.isArray(ratingsArray) && ratingsArray.length > 0) {
+          // Sum all ratings
+          const totalRating = ratingsArray.reduce((sum, ratingObj) => sum + ratingObj.rating, 0);
+          // Calculate average
+          const averageRating = totalRating / ratingsArray.length;
+
+          console.log(`Average Rating for vehicleId ${vehicleId}: ${averageRating}`);
+          return averageRating;
+        } else {
+          console.log('No ratings found for this vehicle.');
+          return 0;
+        }
+      } else {
+        console.log('No such vehicle document found.');
+        return 0;
+      }
+
+    } catch (error) {
+      console.error('Error retrieving or calculating ratings:', error);
+      return 0;
+    }
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
